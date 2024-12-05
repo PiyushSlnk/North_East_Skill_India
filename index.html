@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sikkim Government</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<style>
+     body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background-color: #002868;
+    color: white;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+}
+
+.header-right a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 10px;
+    background-color: #014c91;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #014c91;
+    padding: 0;
+}
+
+nav ul ul li {
+    width: 200px;
+    border-top: 1px solid #ddd;
+}
+
+nav ul ul li a {
+    padding: 10px;
+    display: block;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transition: all 0.5s ease;
+}
+
+.slide.active {
+    left: 0;
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 2em;
+    padding: 0 20px;
+}
+
+.services {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.service-items {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.service-item {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.news-events {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.news-items {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.news-item {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #002868;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .service-items, .news-items {
+        flex-direction: column;
+    }
+}
+/* General Styles */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    background-color: #014c91;
+}
+
+nav ul li {
+    position: relative; /* Positioning for dropdown */
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #002868;
+}
+
+/* Dropdown Styles */
+nav ul ul.dropdown {
+    display: none; /* Hide the dropdown by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #014c91;
+    padding: 0;
+    list-style-type: none;
+    min-width: 200px; /* Ensure dropdown has a proper width */
+    z-index: 1000; /* Ensure dropdown appears above other elements */
+}
+
+nav ul ul.dropdown li a {
+    padding: 10px;
+    background-color: #014c91;
+}
+
+nav ul ul.dropdown li a:hover {
+    background-color: #002868;
+}
+
+/* Show dropdown on hover */
+nav ul li:hover > ul.dropdown {
+    display: block; /* Show dropdown on hover */
+}
+.header-right a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.header-right a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* General Popup Form Styles */
+.form-popup {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 1000; /* Ensure it appears above other content */
+    overflow: auto; /* Enable scrolling for long forms */
+}
+
+.form-container {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%; /* Form width */
+    max-width: 800px; /* Max width of form */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-container h2, .form-container h3, .form-container h4 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.form-container input[type="text"], .form-container input[type="file"], .form-container select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-container button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+
+</style>
+<body>
+     <header>
+          <div class="header-top">
+               <img src="logo.png" alt="Sikkim Logo" class="logo">
+               <div class="header-right">
+                   <a href="#">Contact Us</a>
+                   <a href="#">Login</a>
+                   <a href="#" style="background-color:sandybrown;" class="register-btn" id="openForm">Register</a>
+               </div>
+           </div>
+           
+           <!-- Popup Form -->
+           <div id="registrationForm" class="form-popup">
+               <div class="form-container">
+                   <span class="close-btn" id="closeForm">&times;</span>
+                   <h2>Nagistrations</h2>
+                   
+                   <!-- Form Content -->
+                   <h3>Drone Registration</h3>
+                   <label>Company Name (if any):</label>
+                   <input type="text" placeholder="Enter Company Name">
+           
+                   <label>Full Name:</label>
+                   <input type="text" placeholder="Enter Full Name">
+           
+                   <label>Owner Image:</label>
+                   <input type="file">
+           
+                   <label>Address:</label>
+                   <input type="text" placeholder="Enter Address">
+           
+                   <label>Aadhar Number:</label>
+                   <input type="text" placeholder="Enter Aadhar Number">
+           
+                   <label>Aadhar Image:</label>
+                   <input type="file">
+           
+                   <label>Drone Serial Number:</label>
+                   <input type="text" placeholder="Enter Drone Serial Number">
+           
+                   <label>RC Serial Number:</label>
+                   <input type="text" placeholder="Enter RC Serial Number">
+           
+                   <label>Drone Image:</label>
+                   <input type="file">
+           
+                   <!-- Registration Tab -->
+                   <h3>Registration Tab (Clicking on the Tab. Respective Google form will open)</h3>
+           
+                   <label>Drone Ownership Transfer</label>
+           
+                   <h4>Existing Owner Details:</h4>
+                   <label>Drone Registration Number:</label>
+                   <input type="text" placeholder="Enter Drone Registration Number">
+           
+                   <label>Drone Registration Certificate Image Upload:</label>
+                   <input type="file">
+           
+                   <label>Drone Image:</label>
+                   <input type="file">
+           
+                   <h4>New Owner Details:</h4>
+                   <label>Company Name (if any):</label>
+                   <input type="text" placeholder="Enter Company Name">
+           
+                   <label>Full Name:</label>
+                   <input type="text" placeholder="Enter Full Name">
+           
+                   <label>Owner Image:</label>
+                   <input type="file">
+           
+                   <label>Address:</label>
+                   <input type="text" placeholder="Enter Address">
+           
+                   <label>Aadhar Number:</label>
+                   <input type="text" placeholder="Enter Aadhar Number">
+           
+                   <label>Aadhar Image:</label>
+                   <input type="file">
+           
+                   <label>Drone Serial Number:</label>
+                   <input type="text" placeholder="Enter Drone Serial Number">
+           
+                   <label>RC Serial Number:</label>
+                   <input type="text" placeholder="Enter RC Serial Number">
+           
+                   <h3>Drone Operator Registration</h3>
+                   <label>Address:</label>
+                   <input type="text" placeholder="Enter Address">
+           
+                   <label>Aadhar Number:</label>
+                   <input type="text" placeholder="Enter Aadhar Number">
+           
+                   <label>Aadhar Image:</label>
+                   <input type="file">
+           
+                   <label>Drone Details:</label>
+                   <input type="text" placeholder="Enter Drone Details">
+           
+                   <label>Operator Image:</label>
+                   <input type="file">
+           
+                   <label>Training School (if any):</label>
+                   <input type="text" placeholder="Enter Training School">
+           
+                   <label>Pilot License Number:</label>
+                   <input type="text" placeholder="Enter Pilot License Number">
+           
+                   <label>Drone Owned (if any):</label>
+                   <input type="text" placeholder="Enter Drone Owned">
+           
+                   <h3>Drone Trade License</h3>
+                   <label>Full Name:</label>
+                   <input type="text" placeholder="Enter Full Name">
+           
+                   <label>Owner Image:</label>
+                   <input type="file">
+           
+                   <label>Address:</label>
+                   <input type="text" placeholder="Enter Address">
+           
+                   <label>Aadhar Number:</label>
+                   <input type="text" placeholder="Enter Aadhar Number">
+           
+                   <label>Aadhar Image:</label>
+                   <input type="file">
+           
+                   <label>Permit/Lease/Ownership Agreement:</label>
+                   <input type="file">
+           
+                   <label>Property Area:</label>
+                   <input type="text" placeholder="Enter Property Area">
+           
+                   <label>Property Location:</label>
+                   <input type="text" placeholder="Enter Property Location">
+           
+                   <label>Property Tax:</label>
+                   <input type="text" placeholder="Enter Property Tax">
+           
+                   <label>Electricity Bill:</label>
+                   <input type="file">
+           
+                   <label>Images of the Facility:</label>
+                   <input type="file">
+           
+                   <label>Employees List:</label>
+                   <input type="file">
+           
+                   <label>Location to Use:</label>
+                   <input type="text" placeholder="Enter Location to Use">
+           
+                   <label>Business Category:</label>
+                   <select>
+                       <option value="Manufacturer">Manufacturer</option>
+                       <option value="Service Provider">Service Provider</option>
+                       <option value="Shop Owner">Shop Owner</option>
+                       <option value="Distributor">Distributor</option>
+                       <option value="Freelancer">Freelancer</option>
+                       <option value="Repairing Center">Repairing Center</option>
+                       <option value="Drone Training School">Drone Training School</option>
+                   </select>
+           
+                   <!-- Submit Button -->
+                   <button type="submit">Submit</button>
+               </div>
+           </div>
+                      
+         <nav>
+          <ul>
+              <li><a href="#">Home</a></li>
+              <li>
+                  <a href="#">Registration</a>
+                  <ul class="dropdown">
+                      <li><a href="#">New Registration</a></li>
+                      <li><a href="#">Renew Registration</a></li>
+                      <li><a href="#">Check Status</a></li>
+                  </ul>
+              </li>
+              <li><a href="drone.html">Drone Guide Liens</a></li>
+              <li>
+               <a href="#">Information</a>
+               <ul class="dropdown">
+                   <li><a href="#">Commercial UAVs</a></li>
+                   <li><a href="#">Recreational UAVs</a></li>
+                   <li><a href="#">Military UAVs</a></li>
+               </ul>
+           </li>
+              <li>
+                  <a href="#">UAV Catalogue</a>
+                  <ul class="dropdown">
+                      <li><a href="#">Commercial UAVs</a></li>
+                      <li><a href="#">Recreational UAVs</a></li>
+                      <li><a href="#">Military UAVs</a></li>
+                  </ul>
+              </li>
+              <li>
+               <a href="#">State flight Zone</a>
+               <ul class="dropdown">
+                   <li><a href="#">Commercial UAVs</a></li>
+                   <li><a href="#">Recreational UAVs</a></li>
+                   <li><a href="#">Military UAVs</a></li>
+               </ul>
+           </li>
+           <li>
+               <a href="#">Oppurunities</a>
+               <ul class="dropdown">
+                   <li><a href="#">Commercial UAVs</a></li>
+                   <li><a href="#">Recreational UAVs</a></li>
+                   <li><a href="#">Military UAVs</a></li>
+               </ul>
+           </li>
+          </ul>
+      </nav>
+      
+     </header>
+     <!-- banner start 
+     <style>
+        .officials-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 5px 10px;
+            text-align: center;
+        }
+        .official {
+            width: 250px;
+        }
+        .official img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .official h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .official p {
+            font-size: 16px;
+            margin: 0;
+        }
+    </style>
+    <section class="officials-section" style="background-color: #1ABC9C;">
+    <div class="official">
+        <img src="https://sikkim.gov.in/Content/images/governor.jpg" alt="Shri Om Prakash Mathur">
+        <h3>SHRI OM PRAKASH MATHUR</h3>
+        <p>Hon'ble Governor</p>
+    </div>
+    <div class="official">
+        <img src="https://sikkim.gov.in/Content/images/Secretary.jpg" alt="Shri Prem Singh Tamang">
+        <h3>SHRI PREM SINGH TAMANG</h3>
+        <p>Hon'ble Chief Minister</p>
+    </div>
+    <div class="official">
+        <img src="https://sikkim.gov.in/Content/images/hcm.jpg" alt="Shri V. B. Pathak">
+        <h3>SHRI V. B. PATHAK</h3>
+        <p>Chief Secretary</p>
+    </div>
+</section>
+     banner end -->
+     <main>
+<!-- Carousel/Slider Section -->
+ <style>
+    .banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 400px; /* Adjust height as needed */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.prev, .next {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+ </style>
+<section class="banner">
+    <div class="slider">
+        <div class="slide active" style="background-image:url('https://assets.telegraphindia.com/telegraph/2021/Jan/1611878673_sikkim-college.jpg');"></div>
+        <div class="slide" style="background-image: url('https://sgcnamchi.com/wp-content/uploads/2022/06/Campus-View-of-Namchi-Government-College-Namchi_Campus-View.png');"></div>
+        <div class="slide" style="background-image: url('https://mcmscache.epapr.in/post_images/website_546/post_38568894/full.jpg');"></div>
+        <div class="slider-controls">
+            <span class="prev">&#10094;</span>
+            <span class="next">&#10095;</span>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.slide');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        if (index >= slides.length) {
+            currentIndex = 0;
+        } else if (index < 0) {
+            currentIndex = slides.length - 1;
+        } else {
+            currentIndex = index;
+        }
+        const offset = -currentIndex * 100;
+        document.querySelector('.slider').style.transform = `translateX(${offset}%)`;
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+
+    prevButton.addEventListener('click', prevSlide);
+    nextButton.addEventListener('click', nextSlide);
+
+    // Automatically change slide every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Initialize the first slide
+    showSlide(currentIndex);
+});
+
+</script>
+<!-- Carousel/Slider end -->
+          <style>
+          .service-slider {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;  /* Increased the max-width for larger sliders */
+            margin: 50px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #f9f9f9 0%, #e3e3e3 100%);
+            padding: 30px;
+        }
+        
+        .service-items {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+        }
+        
+        .service-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            text-align: left;
+            color: #333;
+            transition: background 0.3s ease;
+        }
+        
+        .service-item:hover {
+            background: linear-gradient(135deg, #dcdcdc 0%, #f7f7f7 100%);
+        }
+        
+        .service-item h3 {
+            margin-top: 0;
+            font-size: 2em;
+            color: #0066cc;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-item ul {
+            list-style-type: disc;
+            padding-left: 25px;
+            font-size: 1.2em;
+            line-height: 1.7;
+        }
+        
+        .service-item ul li {
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .service-item ul li:hover {
+            color: #0066cc;
+        }
+        
+        .navigation-dots {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #f0f0f0;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .navigation-dots .dot {
+            height: 16px;
+            width: 16px;
+            margin: 0 7px;
+            background-color: #aaa;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .navigation-dots .dot.active {
+            background-color: #0066cc;
+            transform: scale(1.4);
+        }
+        
+        .navigation-dots .dot:hover {
+            background-color: #004b99;
+            transform: scale(1.2);
+        }
+        
+        /* Subtle animations */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideOut {
+            0% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+        }
+        
+        .service-item {
+            animation: slideIn 0.8s forwards;
+        }
+        
+        .service-item.hide {
+            animation: slideOut 0.8s forwards;
+        }
+        
+        /* Wider Text Boxes */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%; /* Ensure the text boxes are full width */
+            max-width: 800px; /* Limit the width to avoid overly large text boxes */
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 8px rgba(0, 102, 204, 0.3);
+        }
+        </style>
+
+        <!-- about us start -->
+         <style>
+         .about-us {
+            padding: 80px 0;
+            /* background: linear-gradient(to bottom right, #0066cc, #003366); */
+            color: #fff;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-image {
+            flex: 1;
+            max-width: 50%;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px 0 0 15px;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        .about-text {
+            flex: 1;
+            max-width: 50%;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 0 15px 15px 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-text h2 {
+            font-size: 2.8em;
+            color: #ffcc00;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+        
+        .about-text p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #ddd;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Adding some subtle background animation */
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+        
+            .about-image,
+            .about-text {
+                max-width: 100%;
+                border-radius: 15px;
+            }
+        
+            .about-image img {
+                border-radius: 15px 15px 0 0;
+            }
+        
+            .about-text {
+                border-radius: 0 0 15px 15px;
+                padding: 30px;
+            }
+        }
+        
+         </style>
+        <section class="about-us">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="about-us.jpg" alt="About Us Image">
+                </div>
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p>
+                        Welcome to our organization! We are committed to providing the best services in the industry. Our team of 
+                        professionals
+                         is dedicated to delivering high-quality results and ensuring customer satisfaction. With years of experience, we have 
+                         built a strong reputation and a loyal customer base.
+                    </p>
+                    <p>
+                        Our mission is to lead the way in our industry by setting the highest standards of excellence. We believe in 
+                        innovation, integrity, and teamwork, which drives our success and helps us achieve our goals.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- about us end -->
+
+        <!-- faq start -->
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <section class="faq">    
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq1">
+                <label for="faq1" class="faq-question">Why is it important to check geographic flight zones before UAV take off?</label>
+                <div class="faq-answer">
+                    <p>It is crucial to check geographic flight zones to ensure compliance with regulations and avoid entering restricted 
+                        areas. This helps prevent legal issues and ensures safety during UAV operations.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq2">
+                <label for="faq2" class="faq-question">What are the restricted zones for UAV flights?</label>
+                <div class="faq-answer">
+                    <ul>
+                        <li>25 km around international borders</li>
+                        <li>10 km around airports</li>
+                        <li>1 km around government buildings</li>
+                        <li>1 km around minister houses</li>
+                    </ul>
+                    <p>Flying UAVs in these areas is restricted and considered a punishable offense.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq3">
+                <label for="faq3" class="faq-question">What should I do if there is a temporary no-fly zone?</label>
+                <div class="faq-answer">
+                    <p>Temporary no-fly zones will be declared for public meetings and events. UAV operators are advised to follow these restrictions to ensure compliance and avoid penalties.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq4">
+                <label for="faq4" class="faq-question">Who can receive special permission for UAV operations?</label>
+                <div class="faq-answer">
+                    <p>Special permission will be provided to registered government and private agencies for defined purposes. These permissions are issued based on the specific needs and conditions of the operation.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 5 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq5">
+                <label for="faq5" class="faq-question">What are the consequences of using UAVs for malicious activities?</label>
+                <div class="faq-answer">
+                    <p>Using UAVs for malicious activities, including illegal video or photographs, is a punishable offense. Such actions are 
+                        subject to legal penalties and enforcement actions.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 6 -->
+            <div class="faq-item">
+                <input type="checkbox" id="faq6">
+                <label for="faq6" class="faq-question">What are the regulations regarding foreign UAV brands?</label>
+                <div class="faq-answer">
+                    <p>From 01.01.2025 onwards, the selling, purchasing, or operating of foreign UAV brands (like DJI) without a Unique 
+                        Identification Number (UIN) is completely banned in the state.</p>
+                </div>
+            </div>
+                <!-- More Read Button -->
+                 <div class="more-read">
+                    <a href="more-faq.html" class="more-read-button">More Read</a>
+                </div>
+        </section>
+        
+        <style>
+
+.more-read {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.more-read-button {
+    display: inline-block;
+    background-color: #0047ab;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.more-read-button:hover {
+    background-color: #003799;
+}
+
+            .faq {
+                width: 80%;
+                margin: 50px auto;
+                font-family: 'Arial', sans-serif;
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        
+            .faq h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                font-size: 24px;
+                color: #0047ab;
+            }
+        
+            .faq-item {
+                margin-bottom: 15px;
+            }
+        
+            .faq-question {
+                display: block;
+                font-size: 18px;
+                color: #333;
+                background-color: #e0e0e0;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+        
+            .faq-question:hover {
+                background-color: #d0d0d0;
+            }
+        
+            .faq-answer {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0 10px;
+                font-size: 16px;
+                color: #555;
+            }
+        
+            .faq-item input[type="checkbox"] {
+                display: none;
+            }
+        
+            .faq-item input[type="checkbox"]:checked ~ .faq-answer {
+                max-height: 1000px;
+                padding-top: 10px;
+            }
+        
+            .faq-answer ul {
+                list-style-type: disc;
+                padding-left: 20px;
+            }
+        
+            .faq-answer ul li {
+                margin-bottom: 8px;
+            }
+        </style>
+        
+        
+        <!-- faq end -->
+        <h2 class="section-heading">2. Trade License Application Categories (Information Tab)</h2>
+         <section id="info-tab">
+            <h2></h2>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>Manufacturer</h3>
+                    <div class="info-details">
+                        <p><strong>Covered Area:</strong> Minimum 2,000 sq.ft. with power supply, drinking water, and sanitary facility.</p>
+                        <p><strong>Area Ownership:</strong> Must be owned or leased (agreement copy required).</p>
+                        <p><strong>Annual Turnover:</strong> Over 50 lakhs.</p>
+                        <p><strong>Owner Residency:</strong> Must be a resident of Sikkim.</p>
+                        <p><strong>Employee Requirement:</strong> 20 employees, with at least 50% being residents of Sikkim.</p>
+                        <p><strong>UAV Stock:</strong> At least 10 units, combining micro and/or small category UAVs, in ready stock.</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <h3>Service Provider</h3>
+                    <div class="info-details">
+                        <p><strong>Covered Area:</strong> Minimum 1,000 sq.ft. with power supply, drinking water, and sanitary facility.</p>
+                        <p><strong>Area Ownership:</strong> Must be owned or leased (agreement copy required).</p>
+                        <p><strong>Annual Turnover:</strong> Over 20 lakhs.</p>
+                        <p><strong>Owner Residency:</strong> Must be a resident of Sikkim.</p>
+                        <p><strong>Employee Requirement:</strong> 10 employees, with at least 50% being residents of Sikkim.</p>
+                        <p><strong>UAV Stock:</strong> At least 5 units, combining micro and/or small category UAVs, in ready stock to conduct services.</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <h3>Drone Training School Registration (As per DGCA)</h3>
+                    <div class="info-details">
+                        <p><strong>Annual Turnover:</strong> Over 20 lakhs.</p>
+                        <p><strong>Open Sky Playgrounds:</strong> 2 playgrounds, each 60*60 meters.</p>
+                        <p><strong>Classrooms:</strong> 4 classrooms, each 300 sq.ft., with electricity supply.</p>
+                        <p><strong>Facilities:</strong> Washroom, electricity, and drinking water.</p>
+                        <p><strong>Equipment:</strong> 10 computers, 1 TV.</p>
+                        <p><strong>Staff:</strong> 2 licensed instructors and 1 account manager.</p>
+                        <p><strong>Area Ownership:</strong> Must be owned or leased (agreement copy required).</p>
+                        <p><strong>Owner Residency:</strong> Must be a resident of Sikkim.</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <h3>UAV Store / Shop Owner / Distributor & Repairing Center</h3>
+                    <div class="info-details">
+                        <p><strong>Commercial Space:</strong> 500 sq.ft. electronic store.</p>
+                        <p><strong>Store Authorization:</strong> OEM authorized stores.</p>
+                        <p><strong>Area Ownership:</strong> Must be owned or leased (agreement copy required).</p>
+                        <p><strong>Annual Turnover:</strong> Over 15 lakhs.</p>
+                        <p><strong>Owner Residency:</strong> Must be a resident of Sikkim.</p>
+                        <p><strong>Employee Requirement:</strong> 2 employees, with 100% being residents of Sikkim.</p>
+                    </div>
+                </div>
+            </div>
+            <p><strong>For assistance, contact the Sikkim Drone Help Line.</strong></p>
+        </section>
+        <style>#info-tab {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background-color: #e9f5f9; /* Light blue background */
+        }
+        
+        #info-tab h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #007bff; /* Bright blue */
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-box {
+            border: 1px solid #007bff;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            background-color: #f1f9ff; /* Light blue on hover */
+        }
+        
+        .info-box h3 {
+            font-size: 24px;
+            color: #0056b3; /* Dark blue */
+            margin-bottom: 15px;
+            border-bottom: 3px solid #007bff; /* Blue underline */
+            padding-bottom: 10px;
+            font-weight: bold;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-details p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .info-details strong {
+            color: #007bff; /* Bright blue */
+        }
+        
+        p {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            color: #0056b3; /* Dark blue */
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        
+        </style> 
+         <!-- Informantion tab tender end -->
+          <br><br><br>
+        <!-- uav list start -->
+        <style>
+            /* Basic styles for sections and tables */
+            section {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin: 20px auto;
+                width: 90%;
+            }
+    
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 15px;
+                font-weight: bold;
+                color: #0056b3;
+                border-bottom: 2px solid #0056b3;
+                padding-bottom: 5px;
+            }
+    
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+    
+            th, td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: left;
+            }
+    
+            th {
+                background-color: #e9ecef;
+                font-weight: bold;
+            }
+    
+            td {
+                background-color: #f9f9f9;
+            }
+    
+            /* Tab styles */
+            .tabs-container {
+                width: 90%;
+                margin: 20px auto;
+            }
+    
+            .tabs {
+                display: flex;
+                cursor: pointer;
+                margin-bottom: 20px;
+            }
+    
+            .tab-button {
+                flex: 1;
+                padding: 15px;
+                border: 1px solid #ddd;
+                background-color: #f1f1f1;
+                text-align: center;
+                cursor: pointer;
+                border-radius: 5px 5px 0 0;
+                transition: background-color 0.3s;
+            }
+    
+            .tab-button.active {
+                background-color: #fff;
+                border-bottom: 1px solid #fff;
+                font-weight: bold;
+                color: #0056b3;
+            }
+    
+            .tab-content {
+                display: none;
+            }
+    
+            .tab-content.active {
+                display: block;
+            }
+        </style>
+        <h2 class="section-heading">Informantion Tab</h2>
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="tab1">Government Dept UAV List</button>
+                <button class="tab-button" data-tab="tab2">Drone Operator Details</button>
+                <button class="tab-button" data-tab="tab3">Drone Infrastructure</button>
+            </div>
+    
+            <div class="tab-content" id="tab1">
+                <section>
+                    <div class="section-title">Government Dept UAV List (5 of Information Tab)</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sl. No.</th>
+                                <th>Department Name</th>
+                                <th>Drone Make & Model</th>
+                                <th>Package Contents</th>
+                                <th>Location</th>
+                                <th>Contact Person</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>Police Dept</td>
+                                <td>Surveillance Pro</td>
+                                <td>High-Res Camera, Night Vision</td>
+                                <td>City Center</td>
+                                <td>John Doe</td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>Disaster Management</td>
+                                <td>Rescue Eagle</td>
+                                <td>Thermal Camera, First Aid Kit</td>
+                                <td>Coastal Area</td>
+                                <td>Jane Smith</td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>Forest Dept</td>
+                                <td>Eco Scout</td>
+                                <td>Forest Monitoring Kit</td>
+                                <td>Green Hills</td>
+                                <td>Mike Johnson</td>
+                            </tr>
+                            <tr>
+                                <td>04</td>
+                                <td>Agricultural Dept</td>
+                                <td>AgriFly 2000</td>
+                                <td>Pesticide Sprayer, Soil Sensors</td>
+                                <td>Rural Fields</td>
+                                <td>Emily Davis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+    
+            <div class="tab-content" id="tab2">
+                <section>
+                    <div class="section-title">Drone Operator Details (6 of Information Tab)</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sl. No.</th>
+                                <th>Operators Name</th>
+                                <th>Drone Details</th>
+                                <th>License Number</th>
+                                <th>Location of Operation</th>
+                                <th>Contact Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>Alpha Drones</td>
+                                <td>Surveillance Pro</td>
+                                <td>DL-12345</td>
+                                <td>City Center</td>
+                                <td>+91 9876543210</td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>Rescue Wings</td>
+                                <td>Rescue Eagle</td>
+                                <td>DL-54321</td>
+                                <td>Coastal Area</td>
+                                <td>+91 9876543211</td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>Eco Guardians</td>
+                                <td>Eco Scout</td>
+                                <td>DL-67890</td>
+                                <td>Green Hills</td>
+                                <td>+91 9876543212</td>
+                            </tr>
+                            <tr>
+                                <td>04</td>
+                                <td>AgriFly Services</td>
+                                <td>AgriFly 2000</td>
+                                <td>DL-09876</td>
+                                <td>Rural Fields</td>
+                                <td>+91 9876543213</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+    
+            <div class="tab-content" id="tab3">
+                <section>
+                    <div class="section-title">Drone Infrastructure (7 to 10 Information Tab)</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sl. No.</th>
+                                <th>Company Name</th>
+                                <th>Category</th>
+                                <th>Trade License Number</th>
+                                <th>Office Address</th>
+                                <th>Contact Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>SkyTech Industries</td>
+                                <td>Manufacturer</td>
+                                <td>TR-12345</td>
+                                <td>123 Main Street, Metropolis</td>
+                                <td>+91 9876543214</td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>Flight Path Solutions</td>
+                                <td>Service Provider</td>
+                                <td>TR-54321</td>
+                                <td>456 Elm Street, River City</td>
+                                <td>+91 9876543215</td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>AeroSupply Co.</td>
+                                <td>Distributor</td>
+                                <td>TR-67890</td>
+                                <td>789 Oak Street, Hill Valley</td>
+                                <td>+91 9876543216</td>
+                            </tr>
+                            <tr>
+                                <td>04</td>
+                                <td>Repair Masters</td>
+                                <td>Repairing Center</td>
+                                <td>TR-09876</td>
+                                <td>101 Pine Street, Gotham</td>
+                                <td>+91 9876543217</td>
+                            </tr>
+                            <tr>
+                                <td>05</td>
+                                <td>Pilot Training Academy</td>
+                                <td>Training Center</td>
+                                <td>TR-56789</td>
+                                <td>202 Maple Street, Springfield</td>
+                                <td>+91 9876543218</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+    
+                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        </script>
+        <!-- uav list  end-->
+
+           <br><br><br>
+             <!-- UAV Catalogue Section -->
+<section class="uav-catalogue">
+    <div class="banner">
+        <img src="https://iasbaba.com/wp-content/uploads/2022/12/12.png" alt="UAV Catalogue Banner" class="banner-image">
+        <h1>UAV Catalogue</h1>
+        <p>Explore the latest models and specifications</p>
+    </div>
+    <div class="catalogue-content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sl. No.</th>
+                    <th>UAV Model</th>
+                    <th>Manufacturer</th>
+                    <th>Category</th>
+                    <th>Specifications</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>Surveillance Pro</td>
+                    <td>DroneCorp</td>
+                    <td>Surveillance</td>
+                    <td>4K Camera, GPS</td>
+                    <td>$1,200</td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>Rescue Eagle</td>
+                    <td>SkyTech</td>
+                    <td>Rescue</td>
+                    <td>Thermal Camera, First Aid Kit</td>
+                    <td>$1,500</td>
+                </tr>
+                <tr>
+                    <td>03</td>
+                    <td>Eco Scout</td>
+                    <td>AeroDynamics</td>
+                    <td>Environmental</td>
+                    <td>Multispectral Sensor, GPS</td>
+                    <td>$1,800</td>
+                </tr>
+                <tr>
+                    <td>04</td>
+                    <td>AgriFly 2000</td>
+                    <td>AgriTech</td>
+                    <td>Agricultural</td>
+                    <td>Pesticide Sprayer, Soil Sensors</td>
+                    <td>$2,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<style>
+/* UAV Catalogue Section Styles */
+    .uav-catalogue {
+        width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .banner {
+        position: relative;
+        text-align: center;
+    }
+    
+    .banner-image {
+        width: 100%;
+        height: auto;
+        border-radius: 5px 5px 0 0;
+    }
+    
+    .banner h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 24px;
+        margin: 0;
+    }
+    
+    .banner p {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 16px;
+        margin: 0;
+    }
+    
+    .catalogue-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    
+    .catalogue-content th, .catalogue-content td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    
+    .catalogue-content th {
+        background-color: #e9ecef;
+        font-weight: bold;
+    }
+    
+    .catalogue-content td {
+        background-color: #fff;
+    }
+    
+</style>
+           <!-- uav table end -->
+           <br><br><br>
+
+<!-- State Fight Zone Section Start -->
+<style>
+    .about-us {
+        padding: 80px 0;
+        background: linear-gradient(to bottom right, #0066cc, #003366);
+        color: #fff;
+    }
+
+    .about-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .about-image {
+        flex: 1;
+        max-width: 50%;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px 0 0 15px;
+        transition: transform 0.5s ease;
+    }
+
+    .about-image:hover img {
+        transform: scale(1.1);
+    }
+
+    .about-text {
+        flex: 1;
+        max-width: 50%;
+        padding: 40px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 0 15px 15px 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    .about-text h2 {
+        font-size: 2.8em;
+        color: #ffcc00;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    .about-text p {
+        font-size: 1.3em;
+        line-height: 1.8;
+        color: #ddd;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .about-text p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Updated Button Styles */
+    .popup-btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #ffcc00;
+        color: #003366;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .popup-btn:hover {
+        background-color: #e6b800;
+        transform: translateY(-3px);
+    }
+
+    .popup-form {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    .popup-form.active {
+        display: block;
+    }
+
+    .popup-form h3 {
+        margin-top: 0;
+        color: #003366;
+    }
+
+    .popup-form label {
+        display: block;
+        margin: 10px 0 5px;
+    }
+
+    .popup-form input[type="text"],
+    .popup-form input[type="date"],
+    .popup-form input[type="time"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .popup-form .form-btn {
+        padding: 10px 15px;
+        background-color: #0066cc;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .popup-form .form-btn:hover {
+        background-color: #004a99;
+    }
+
+    .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .popup-overlay.active {
+        display: block;
+    }
+</style>
+
+<section class="about-us">
+    <div class="about-content">
+        <div class="about-image">
+            <img src="https://iasbaba.com/wp-content/uploads/2022/12/12.png" alt="State Fight Zone Banner">
+        </div>
+        <div class="about-text">
+            <h2>State Fight Zone</h2>
+            <p>Manage and monitor the flight zones across the state. Ensure safety and compliance by tracking restricted, temporary, and emergency flight zones.</p>
+            <button class="popup-btn" onclick="togglePopup()">State Fight Zone</button>
+        </div>
+    </div>
+</section>
+<!-- Pop-up Form Start -->
+
+<div class="popup-overlay" id="popup-overlay" onclick="togglePopup()"></div>
+<div class="popup-form" id="popup-form">
+    <h3>Flight Zone Information</h3>
+    <form>
+        <label for="zone-info">Permanent</label>
+        <input type="text" id="zone-info" placeholder="Rod (Put Location Name & Pin Code)">
+
+        <label for="green-info">Green</label>
+        <input type="text" id="green-info" placeholder="(Put Location Name & Pin Code)">
+
+        <label for="no-fly-zone">Temporary No Fly Zone</label>
+        <input type="date" id="start-date" placeholder="Start Date">
+        <input type="time" id="start-time" placeholder="Start Time">
+        <input type="date" id="end-date" placeholder="End Date">
+        <input type="time" id="end-time" placeholder="End Time">
+
+        <label for="emergency-corridor">Emergency Flight Corridor (For official use only)</label>
+        <input type="text" id="emergency-corridor" placeholder="Enter Corridor Details">
+
+        <label for="heavy-payload">Heavy Payload UAV flight for Delivery/transportation</label>
+        <input type="text" id="heavy-payload" placeholder="Enter Details">
+
+        <button type="submit" class="form-btn">Submit</button>
+    </form>
+</div>
+<!-- Pop-up Form End -->
+
+<script>
+    function togglePopup() {
+        document.getElementById('popup-overlay').classList.toggle('active');
+        document.getElementById('popup-form').classList.toggle('active');
+    }
+</script>
+<!-- State Fight Zone Section End -->
+
+<!-- UAV Vendors and Job Vacancy Start -->
+
+<!-- UAV Vendors and Job Vacancy End -->
+
+        <!-- infromention tab start -->
+<!-- Information Tab Start -->
+<section class="services">
+    <h2 style="text-align: center; color:salmon;">Knowledge Center</h2>
+    <h3 style="text-align: center;">AI, ML, NLP, Python, MERN Stack, Cyber Security, VMBO</h3>
+    <div class="service-items">
+        <!-- AI Section -->
+        <div class="service-item">
+            <h3>Artificial Intelligence (AI)</h3>
+            <ul>
+                <li>Automates repetitive tasks, increasing efficiency and productivity.</li>
+                <li>Enhances decision-making processes through data-driven insights.</li>
+                <li>Enables personalized user experiences in various applications.</li>
+                <li>Supports innovation in industries such as healthcare, finance, and manufacturing.</li>
+                <li>Facilitates predictive analytics for better forecasting and planning.</li>
+            </ul>
+        </div>
+        
+        <!-- ML Section -->
+        <div class="service-item">
+            <h3>Machine Learning (ML)</h3>
+            <ul>
+                <li>Empowers systems to learn from data and improve over time without human intervention.</li>
+                <li>Provides insights and predictions based on large datasets.</li>
+                <li>Used in fraud detection, recommendation systems, and image recognition.</li>
+                <li>Enhances business strategies through advanced data analysis.</li>
+                <li>Supports automation in processes like customer service with chatbots.</li>
+            </ul>
+        </div>
+        
+        <!-- NLP Section -->
+        <div class="service-item">
+            <h3>Natural Language Processing (NLP)</h3>
+            <ul>
+                <li>Facilitates human-computer interaction through voice recognition and text analysis.</li>
+                <li>Used in applications like sentiment analysis, translation, and speech-to-text.</li>
+                <li>Improves customer service with chatbots and virtual assistants.</li>
+                <li>Enhances content moderation and filtering on social media platforms.</li>
+                <li>Enables personalized marketing through understanding customer preferences.</li>
+            </ul>
+        </div>
+        
+        <!-- Python Section -->
+        <div class="service-item">
+            <h3>Python</h3>
+            <ul>
+                <li>Simple and easy-to-learn programming language with vast libraries and frameworks.</li>
+                <li>Widely used in web development, data science, AI, and machine learning.</li>
+                <li>Supports rapid prototyping and development with concise code syntax.</li>
+                <li>Strong community support and extensive documentation.</li>
+                <li>Cross-platform compatibility for versatile application development.</li>
+            </ul>
+        </div>
+        
+        <!-- MERN Stack Section -->
+        <div class="service-item">
+            <h3>MERN Stack</h3>
+            <ul>
+                <li>Comprehensive stack for building modern web applications.</li>
+                <li>Combines MongoDB, Express.js, React.js, and Node.js for full-stack development.</li>
+                <li>Facilitates real-time, dynamic web applications with a single language (JavaScript).</li>
+                <li>Scalable and efficient for handling large volumes of data.</li>
+                <li>Supported by a strong developer community and open-source tools.</li>
+            </ul>
+        </div>
+        
+        <!-- Cyber Security Section -->
+        <div class="service-item">
+            <h3>Cyber Security</h3>
+            <ul>
+                <li>Protects systems, networks, and data from cyber threats and attacks.</li>
+                <li>Ensures data privacy and compliance with regulatory standards.</li>
+                <li>Reduces the risk of data breaches and financial losses.</li>
+                <li>Involves practices like encryption, firewalls, and intrusion detection systems.</li>
+                <li>Critical for maintaining trust in digital transactions and online services.</li>
+            </ul>
+        </div>
+        
+        <!-- VMBO Section -->
+        <div class="service-item">
+            <h3>VMBO</h3>
+            <ul>
+                <li>Vocational education system in the Netherlands, preparing students for practical professions.</li>
+                <li>Combines theoretical and practical learning in various sectors like technology, healthcare, and business.</li>
+                <li>Focuses on skill development for immediate entry into the workforce.</li>
+                <li>Offers different learning pathways tailored to students' interests and abilities.</li>
+                <li>Strong emphasis on hands-on experience and industry collaboration.</li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        .services {
+    padding: 20px;
+    /*background-color: #125598;  Midnight Blue background */
+    background-color:transparent; /* Midnight Blue background */
+    border-radius: 12px;
+    /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */
+}
+
+.services h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #FFFFFF; /* White text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.services h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #123d88; /* Emerald Green */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.service-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.service-item {
+    flex: 1 1 100%;
+    background-color: #BDC3C7; /* Light Slate Gray background */
+    /* border: 2px solid #34495E; Dark Slate Gray border */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #000000; /* White text */
+}
+
+.service-item ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-top: 10px;
+    display: none; /* Initially hide the list */
+    color: #2C3E50; /* Midnight Blue text */
+}
+
+.service-item.expanded ul {
+    display: block; /* Show the list when expanded */
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background-color: #1ABC9C; /* Turquoise on hover */
+}
+
+.service-item h3::before {
+    content: '\25BA'; /* Right arrow */
+    display: inline-block;
+    margin-right: 10px;
+    color: #2ECC71; /* Emerald Green arrow */
+    transition: transform 0.3s ease;
+}
+
+.service-item.expanded h3::before {
+    transform: rotate(90deg); /* Rotate the arrow down when expanded */
+}
+
+.navigation-dots .dot {
+    background-color: #BDC3C7; /* Light Slate Gray dots */
+}
+
+.navigation-dots .dot.active {
+    background-color: #2ECC71; /* Emerald Green active dot */
+}
+
+    </style>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const serviceItems = document.querySelectorAll('.service-item h3');
+    
+    serviceItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const parent = this.parentElement;
+            parent.classList.toggle('expanded');
+        });
+    });
+});
+
+</script>
+<!-- Information Tab End -->
+ <!-- job and tender start -->
+
+  <!-- Opportunities Section -->
+   <style>.opportunities {
+    padding: 20px;
+    background-color: #f0f4f8; /* Soft background for the section */
+    border-radius: 10px; /* Rounded corners for the section */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+}
+
+.table-container {
+    margin-bottom: 20px;
+    background: #ffffff; /* White background for tables */
+    border-radius: 10px; /* Rounded corners for the table container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for table container */
+    overflow: hidden; /* Ensures rounded corners work well */
+}
+
+table {
+    width: 100%;
+    border-collapse: separate; /* Separate borders for better design */
+    border-spacing: 0; /* Remove spacing between cells */
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0; /* Light gray border */
+    padding: 15px; /* Increased padding for spaciousness */
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+table th {
+    background: #4a90e2; /* Blue gradient background for headers */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase; /* Uppercase text for headers */
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray background for even rows */
+}
+
+table tr:nth-child(odd) {
+    background-color: #ffffff; /* White background for odd rows */
+}
+
+table tr:hover {
+    background-color: #e3f2fd; /* Light blue hover effect */
+}
+
+table caption {
+    font-size: 1.3em;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+    text-align: center; /* Center align caption */
+    
+}
+
+   </style>
+<section class="opportunities">
+    <style>
+        .section-heading {
+    font-size: 2em; /* Larger font size for emphasis */
+    color: #333; /* Dark gray color for readability */
+    text-align: center; /* Center-align the heading */
+    margin: 20px 0; /* Add margin for spacing above and below */
+    font-weight: bold; /* Bold font weight for emphasis */
+    text-transform: uppercase; /* Uppercase text for a formal look */
+    position: relative; /* For pseudo-element positioning */
+}
+
+.section-heading::before {
+    content: ""; /* Empty content for the pseudo-element */
+    display: block;
+    width: 50px; /* Width of the underline */
+    height: 5px; /* Height of the underline */
+    background: #4a90e2; /* Blue underline color */
+    position: absolute;
+    bottom: -10px; /* Position the underline below the heading */
+    left: 50%; /* Center the underline horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+}
+
+    </style>
+    <h2 class="section-heading">Opportunities</h2>
+    
+    <!-- Table 1 -->
+    <div class="table-container">
+        <h3>Opportunities Table 1</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>SL No.</th>
+                    <th>Tender Name</th>
+                    <th>Org Name</th>
+                    <th>Tender Details</th>
+                    <th>Issuing Date</th>
+                    <th>Submission Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Tender A</td>
+                    <td>Organization A</td>
+                    <td>Details about Tender A</td>
+                    <td>2024-09-01</td>
+                    <td>2024-10-01</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Tender B</td>
+                    <td>Organization B</td>
+                    <td>Details about Tender B</td>
+                    <td>2024-09-15</td>
+                    <td>2024-10-15</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Table 2 -->
+    <div class="table-container">
+        <h3>Opportunities Table 2</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>SL No.</th>
+                    <th>Tender Name</th>
+                    <th>Org Name</th>
+                    <th>Tender Details</th>
+                    <th>Issuing Date</th>
+                    <th>Submission Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Tender C</td>
+                    <td>Organization C</td>
+                    <td>Details about Tender C</td>
+                    <td>2024-09-10</td>
+                    <td>2024-10-10</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Tender D</td>
+                    <td>Organization D</td>
+                    <td>Details about Tender D</td>
+                    <td>2024-09-20</td>
+                    <td>2024-10-20</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+ <!-- job and tender end -->
+
+        <!-- Informantion tab tender start -->
+
+            <br><br><br>
+         <!-- News and Events Section -->
+         <section class="news-events">
+             <h2>Latest News & Events</h2>
+             <div class="news-items">
+                 <div class="news-item">
+                     <h3>News Title 1</h3>
+                     <p>Summary of the news item goes here.</p>
+                 </div>
+                 <div class="news-item">
+                     <h3>Event Title 2</h3>
+                     <p>Details about the upcoming event.</p>
+                 </div>
+                 <div class="news-item">
+                     <h3>Announcement 3</h3>
+                     <p>Important announcement details.</p>
+                 </div>
+             </div>
+         </section>
+     </main>
+ 
+     <footer>
+         <div class="footer-content">
+             <p>&copy; 2024 Sikkim Government. All rights reserved.</p>
+         </div>
+     </footer>
+ 
+     <script>
+          // script.js
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+
+document.querySelector('.next').addEventListener('click', nextSlide);
+document.querySelector('.prev').addEventListener('click', prevSlide);
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.left = (i - index) * 100 + '%';
+        slide.classList.remove('active');
+    });
+    slides[index].classList.add('active');
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+}
+
+// Auto-slide
+setInterval(nextSlide, 5000);
+
+     </script>
+     <script>
+          document.getElementById("openForm").onclick = function() {
+    document.getElementById("registrationForm").style.display = "block";
+}
+
+document.getElementById("closeForm").onclick = function() {
+    document.getElementById("registrationForm").style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById("registrationForm")) {
+        document.getElementById("registrationForm").style.display = "none";
+    }
+}
+
+     </script>
+ </body>
+</html>
